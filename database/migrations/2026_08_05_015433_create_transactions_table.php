@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id('id_transaksi');
             $table->foreignId('id_pelanggan')
-          ->constrained('pelanggan', 'id_pelanggan');
+          ->constrained('pelanggan', 'id_pelanggan')
+          ->onDelete('cascade');
             $table->date('tanggal');
             $table->double('total');
             $table->timestamps();

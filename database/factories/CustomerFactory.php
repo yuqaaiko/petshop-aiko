@@ -18,8 +18,8 @@ class CostomersFactory extends Factory
     {
         return [
             'nama' => fake()->name(),
-            'address' => fake()->address(),
-            'phone' => fake()->phoneNumber(),
+            'alamat' => fake()->address(),
+            'telepon' => fake()->phoneNumber(),
         ];
     }
 }

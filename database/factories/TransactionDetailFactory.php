@@ -18,8 +18,8 @@ class TransactionDetailFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_transaction' => 1,
-            'id_product' => 1,
+            'id_transaksi' => 1,
+            'id_produk' => 1,
             'qty' => fake()->numberBetween(1, 5),
             'subtotal' => fake()->randomFloat(2, 10000, 500000),
         ];

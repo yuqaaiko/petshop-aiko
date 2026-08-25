@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Category extends Model
 {
     use HasFactory;
+
+    protected $table = 'kategori';
+    protected $primaryKey = 'id_kategori';
 }

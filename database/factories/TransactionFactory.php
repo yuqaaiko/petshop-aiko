@@ -18,8 +18,8 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_customers' => 1,
-            'date' => fake()-date(),
+            'id_pelanggan' => 1,
+            'tanggal' => fake()-date(),
             'total' => fake()->randomFloat(2, 10000, 500000)
         ];
     }

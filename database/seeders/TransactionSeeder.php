@@ -2,19 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\Transaction;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class KategoriSeeder extends Seeder
+class TransactionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        App\Models\Kategori::factory()->count(3)->create();
-        App\Models\Kategori::create([
-            'nama_kategori' =>'mainan',
-        ]);
+        Transaction::factory(3)->create();
     }
 }

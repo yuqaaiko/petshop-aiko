@@ -12,3 +12,7 @@ require __DIR__.'/transaction_detail.php';
 Route::get('/', function () {
     return view('customer.dashboard');
 });
+
+Route::get('/tentang-kami', function () {
+    return view('customer.about');
+})->name('about');

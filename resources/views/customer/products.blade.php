@@ -4,49 +4,94 @@
 
 @section('content')
 
-    <section>
-        <h1>Produk ThePetHouse</h1>
+```
+<style>
+    .product-header {
+        margin-bottom: 30px;
+    }
 
-        <p>
-            Berikut adalah produk yang tersedia untuk hewan peliharaan Anda.
-        </p>
-    </section>
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
 
-    <section>
-        <h2>Daftar Produk</h2>
+    .product-card {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
 
-        @if ($products->count() > 0)
+    .product-card h3 {
+        margin-bottom: 10px;
+    }
+
+    .product-card p {
+        margin-bottom: 8px;
+    }
+
+    .product-card a {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 14px;
+        background-color: #333333;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+</style>
+
+<section class="product-header">
+    <h1>Produk ThePetHouse</h1>
+
+    <p>
+        Berikut adalah produk yang tersedia untuk hewan peliharaan Anda.
+    </p>
+</section>
+
+<section>
+    <h2>Daftar Produk</h2>
+
+    @if ($products->count() > 0)
+
+        <div class="product-list">
 
             @foreach ($products as $product)
 
-                <div>
+                <div class="product-card">
+
                     <h3>{{ $product->nama_produk }}</h3>
 
                     <p>
-                        Harga: Rp{{ number_format($product->harga, 0, ',', '.') }}
+                        Harga:
+                        Rp{{ number_format($product->harga, 0, ',', '.') }}
                     </p>
 
                     <p>
                         Stok: {{ $product->stok }}
                     </p>
 
-                    <a href="{{ route('product.show', $product->id) }}">
+                    <a href="{{ route('produk.show', ['produk' => $product]) }}">
                         Lihat Detail
                     </a>
-                </div>
 
-                <hr>
+                </div>
 
             @endforeach
 
-        @else
+        </div>
 
-            <p>
-                Belum ada produk yang tersedia.
-            </p>
+    @else
 
-        @endif
+        <p>
+            Belum ada produk yang tersedia.
+        </p>
 
-    </section>
+    @endif
+
+</section>
+```
 
 @endsection

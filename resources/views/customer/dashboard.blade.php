@@ -19,7 +19,7 @@
             Kami menyediakan berbagai kebutuhan untuk hewan peliharaan Anda.
         </p>
 
-        <a href="#">Lihat Produk</a>
+        <a href="{{ route('produk.index') }}">Lihat Produk</a>
     </section>
 
     <section>

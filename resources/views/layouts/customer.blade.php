@@ -64,8 +64,8 @@
 
         <div class="nav-menu">
             <a href="/">Beranda</a>
-            <a href="#">Produk</a>
-            <a href="#">Tentang Kami</a>
+            <a href="{{ route('produk.index') }}">Produk</a> 
+            <a href="{{ route('about') }}">Tentang Kami</a>
         </div>
     </nav>
 

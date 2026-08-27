@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index()
-{
-    $products = Product::all();
+    {
+        $products = Product::all();
 
-    return view('customer.products', compact('products'));
-}
+        return view('customer.products', compact('products'));
+    }
 
     public function create()
     {
@@ -37,7 +37,7 @@ class ProductController extends Controller
             'id_supplier' => $request->id_supplier,
         ]);
 
-        return redirect()->route('product.index')
+        return redirect()->route('produk.index')
             ->with('success', 'Produk berhasil ditambahkan.');
     }
 
@@ -45,9 +45,8 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        return view('product.show', compact('product'));
+        return view('customer.product-detail', compact('product'));
     }
-
     public function edit(string $id)
     {
         $product = Product::findOrFail($id);
@@ -75,7 +74,7 @@ class ProductController extends Controller
             'id_supplier' => $request->id_supplier,
         ]);
 
-        return redirect()->route('product.index')
+        return redirect()->route('produk.index')
             ->with('success', 'Produk berhasil diperbarui.');
     }
 
@@ -85,7 +84,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect()->route('product.index')
+        return redirect()->route('produk.index')
             ->with('success', 'Produk berhasil dihapus.');
     }
 }

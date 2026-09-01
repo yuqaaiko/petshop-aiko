@@ -3,21 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $products = Product::all();
+public function index()
+{
+    $products = Product::all();
 
-        return view('customer.products', compact('products'));
-    }
+    return view('customer.products', compact('products'));
+}
+
+public function adminIndex()
+{
+    $products = Product::all();
+
+    return view('admin.products', compact('products'));
+}
+
 
     public function create()
-    {
-        return view('product.create');
-    }
+{
+    $categories = Category::all();
+    $suppliers = Supplier::all();
+
+    return view('admin.product-create', compact('categories', 'suppliers'));
+}
 
     public function store(Request $request)
     {
@@ -47,13 +60,18 @@ class ProductController extends Controller
 
         return view('customer.product-detail', compact('product'));
     }
-    public function edit(string $id)
-    {
-        $product = Product::findOrFail($id);
+public function edit(string $id)
+{
+    $product = Product::findOrFail($id);
 
-        return view('product.edit', compact('product'));
-    }
+    $categories = Category::all();
+    $suppliers = Supplier::all();
 
+    return view(
+        'admin.product-edit',
+        compact('product', 'categories', 'suppliers')
+    );
+}
     public function update(Request $request, string $id)
     {
         $request->validate([

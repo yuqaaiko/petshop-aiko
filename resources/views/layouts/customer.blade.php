@@ -46,12 +46,24 @@
             padding: 30px 40px;
         }
 
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            text-align: center;
-            background-color: #ffffff;
-        }
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+footer a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #333333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
     </style>
 </head>
 
@@ -73,9 +85,13 @@
         @yield('content')
     </main>
 
-    <footer>
-        <p>&copy; {{ date('Y') }} ThePetHouse</p>
-    </footer>
+<footer>
+    <p>&copy; {{ date('Y') }} ThePetHouse</p>
+
+    <a href="{{ route('admin.access') }}">
+         Admin
+    </a>
+</footer>
 
 </body>
 </html>

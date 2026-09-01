@@ -16,3 +16,15 @@ Route::get('/', function () {
 Route::get('/tentang-kami', function () {
     return view('customer.about');
 })->name('about');
+
+Route::get('/admin', function () {
+    return view('admin.access');
+})->name('admin.access');
+
+Route::post('/admin/check', function () {
+    if (request('password') === 'punyaiko') {
+        return view('admin.dashboard');
+    }
+
+    return back()->with('error', 'Password Admin salah.');
+})->name('admin.check');

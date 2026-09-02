@@ -10,5 +10,12 @@ class Supplier extends Model
     use HasFactory;
 
     protected $table = 'supplier';
+
     protected $primaryKey = 'id_supplier';
+
+    protected $fillable = [
+        'nama_supplier',
+        'alamat',
+        'telepon',
+    ];
 }

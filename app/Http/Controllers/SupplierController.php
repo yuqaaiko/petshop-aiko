@@ -11,31 +11,36 @@ class SupplierController extends Controller
     {
         $suppliers = Supplier::all();
 
-        return view('supplier.index', compact('suppliers'));
+        return view('admin.suppliers', compact('suppliers'));
     }
+    public function adminIndex()
+{
+    $suppliers = Supplier::all();
 
+    return view('admin.suppliers', compact('suppliers'));
+}
     public function create()
     {
-        return view('supplier.create');
+        return view('admin.supplier-create');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama_supplier' => 'required|string|max:255',
-            'alamat' => 'required|string',
-            'nomor_telepon' => 'required|string|max:20',
-        ]);
+public function store(Request $request)
+{
+    $request->validate([
+        'nama_supplier' => 'required|string|max:255',
+        'alamat' => 'required|string',
+        'telepon' => 'required|string|max:20',
+    ]);
 
-        Supplier::create([
-            'nama_supplier' => $request->nama_supplier,
-            'alamat' => $request->alamat,
-            'nomor_telepon' => $request->nomor_telepon,
-        ]);
+    Supplier::create([
+        'nama_supplier' => $request->nama_supplier,
+        'alamat' => $request->alamat,
+        'telepon' => $request->nomor_telepon,
+    ]);
 
-        return redirect()->route('supplier.index')
-            ->with('success', 'Supplier berhasil ditambahkan.');
-    }
+    return redirect()->route('admin.suppliers')
+        ->with('success', 'Supplier berhasil ditambahkan.');
+}
 
     public function show(string $id)
     {
@@ -44,40 +49,41 @@ class SupplierController extends Controller
         return view('supplier.show', compact('supplier'));
     }
 
-    public function edit(string $id)
-    {
-        $supplier = Supplier::findOrFail($id);
+public function edit(string $id)
+{
+    $supplier = Supplier::findOrFail($id);
 
-        return view('supplier.edit', compact('supplier'));
-    }
+    return view('admin.supplier-edit', compact('supplier'));
+}
 
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'nama_supplier' => 'required|string|max:255',
-            'alamat' => 'required|string',
-            'nomor_telepon' => 'required|string|max:20',
-        ]);
+public function update(Request $request, string $id)
+{
+    $request->validate([
+        'nama_supplier' => 'required|string|max:255',
+        'alamat' => 'required|string',
+        'telepon' => 'required|string|max:20',
+    ]);
 
-        $supplier = Supplier::findOrFail($id);
+    $supplier = Supplier::findOrFail($id);
 
-        $supplier->update([
-            'nama_supplier' => $request->nama_supplier,
-            'alamat' => $request->alamat,
-            'nomor_telepon' => $request->nomor_telepon,
-        ]);
+    $supplier->update([
+        'nama_supplier' => $request->nama_supplier,
+        'alamat' => $request->alamat,
+        'telepon' => $request->telepon,
+    ]);
 
-        return redirect()->route('supplier.index')
-            ->with('success', 'Supplier berhasil diperbarui.');
-    }
+    return redirect()->route('admin.suppliers')
+        ->with('success', 'Supplier berhasil diperbarui.');
+}
 
-    public function destroy(string $id)
-    {
-        $supplier = Supplier::findOrFail($id);
+public function destroy(string $id)
+{
+    $supplier = Supplier::findOrFail($id);
 
-        $supplier->delete();
+    $supplier->delete();
 
-        return redirect()->route('supplier.index')
-            ->with('success', 'Supplier berhasil dihapus.');
+    return redirect()->route('admin.suppliers')
+        ->with('success', 'Supplier berhasil dihapus.');
+
     }
 }

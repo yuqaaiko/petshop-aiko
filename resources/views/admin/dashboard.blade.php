@@ -55,14 +55,14 @@
         gap: 20px;
     }
 
-    .menu-card {
-        display: block;
-        background-color: #ffffff;
-        padding: 25px;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        text-decoration: none;
-        color: #333333;
+.menu-card {
+    display: block;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: #333333;
     }
 
     .menu-card:hover {
@@ -147,15 +147,15 @@
     <p>Kelola kategori produk.</p>
 </a>
 
-        <a href="#" class="menu-card">
-            <h3>🚚 Supplier</h3>
-            <p>Kelola data supplier.</p>
-        </a>
+<a href="{{ route('admin.suppliers') }}" class="menu-card">
+    <h3>🚚 Supplier</h3>
+    <p>Kelola data supplier.</p>
+</a>
 
-        <a href="#" class="menu-card">
-            <h3>👥 Pelanggan</h3>
-            <p>Kelola data pelanggan.</p>
-        </a>
+<a href="{{ route('admin.customers') }}" class="menu-card">
+    <h3>👥 Pelanggan</h3>
+    <p>Kelola data pelanggan.</p>
+</a>
 
         <a href="#" class="menu-card">
             <h3>🧾 Transaksi</h3>

@@ -14,6 +14,13 @@ class CustomerController extends Controller
         return view('customer.index', compact('customers'));
     }
 
+    public function adminIndex()
+{
+    $customers = Customer::all();
+
+    return view('admin.customers', compact('customers'));
+}
+
     public function create()
     {
         return view('customer.create');
@@ -33,7 +40,7 @@ class CustomerController extends Controller
             'nomor_telepon' => $request->nomor_telepon,
         ]);
 
-        return redirect()->route('customer.index')
+        return redirect()->route('admin.customer')
             ->with('success', 'Pelanggan berhasil ditambahkan.');
     }
 
@@ -67,7 +74,7 @@ class CustomerController extends Controller
             'nomor_telepon' => $request->nomor_telepon,
         ]);
 
-        return redirect()->route('customer.index')
+        return redirect()->route('admin.customer')
             ->with('success', 'Pelanggan berhasil diperbarui.');
     }
 
@@ -77,7 +84,7 @@ class CustomerController extends Controller
 
         $customer->delete();
 
-        return redirect()->route('customer.index')
+        return redirect()->route('admin.customer')
             ->with('success', 'Pelanggan berhasil dihapus.');
     }
 }

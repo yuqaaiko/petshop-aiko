@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 
 require __DIR__.'/category.php';
 require __DIR__.'/customer.php';
@@ -8,6 +9,24 @@ require __DIR__.'/product.php';
 require __DIR__.'/supplier.php';
 require __DIR__.'/transaction.php';
 require __DIR__.'/transaction_detail.php';
+
+Route::get('/keranjang', [CartController::class, 'index'])
+    ->name('cart.index');
+
+Route::post('/keranjang/tambah/{id}', [CartController::class, 'add'])
+    ->name('cart.add');
+
+Route::post('/keranjang/update/{id}', [CartController::class, 'update'])
+    ->name('cart.update');
+
+Route::delete('/keranjang/hapus/{id}', [CartController::class, 'remove'])
+    ->name('cart.remove');
+
+Route::post('/cart/{id}/increase', [CartController::class, 'increase'])
+    ->name('cart.increase');
+
+Route::post('/cart/{id}/decrease', [CartController::class, 'decrease'])
+    ->name('cart.decrease');
 
 Route::get('/', function () {
     return view('customer.dashboard');

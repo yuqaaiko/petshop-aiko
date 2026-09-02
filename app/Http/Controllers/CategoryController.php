@@ -61,31 +61,31 @@ public function adminIndex()
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $category = Category::findOrFail($id);
+public function edit(string $id)
+{
+    $category = Category::findOrFail($id);
 
-        return view('category.show', compact('category'));
-    }
+    return view('admin.category-edit', compact('category'));
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'nama_kategori' => 'required|string|max:255',
-        ]);
+public function update(Request $request, string $id)
+{
+    $request->validate([
+        'nama_kategori' => 'required|string|max:255',
+    ]);
 
-        $category = Category::findOrFail($id);
+    $category = Category::findOrFail($id);
 
-        $category->update([
-            'nama_kategori' => $request->nama_kategori,
-        ]);
+    $category->update([
+        'nama_kategori' => $request->nama_kategori,
+    ]);
 
-        return redirect()->route('category.index')
-            ->with('success', 'Kategori berhasil diperbarui.');
-    }
+    return redirect()->route('admin.categories')
+        ->with('success', 'Kategori berhasil diperbarui.');
+}
 
     /**
      * Remove the specified resource from storage.

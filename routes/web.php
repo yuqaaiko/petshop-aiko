@@ -57,3 +57,13 @@ Route::get('/checkout', [CartController::class, 'checkout'])
 
 Route::post('/checkout', [CartController::class, 'processCheckout'])
     ->name('checkout.process');
+
+Route::get('/pesanan/{id}', [CartController::class, 'detail'])
+    ->name('customer.detail');
+
+Route::get('/riwayat-pesanan', function () {
+    return view('customer.history-search');
+})->name('customer.history.search');
+
+Route::get('/riwayat-pesanan/cari', [CartController::class, 'history'])
+    ->name('customer.history');

@@ -90,10 +90,6 @@
 
     <nav class="navbar">
 
-        <div class="navbar-brand">
-            ThePetHouse
-        </div>
-
         <div class="navbar-menu">
 
             <a href="{{ url('/') }}">
@@ -104,8 +100,12 @@
                 Produk
             </a>
 
+            <a href="{{ route('customer.history.search') }}">
+                 Riwayat Pesanan
+            </a>
+
             <a href="{{ route('cart.index') }}">
-                🛒 Keranjang
+                 Keranjang
             </a>
 
             <a href="{{ route('about') }}">

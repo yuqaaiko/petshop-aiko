@@ -137,6 +137,8 @@ public function processCheckout(Request $request)
             ->with('error', 'Keranjang masih kosong.');
     }
 
+
+
     // Simpan data pelanggan
     $customer = Customer::create([
         'nama' => $request->nama_pelanggan,
@@ -151,12 +153,13 @@ public function processCheckout(Request $request)
         $total += $item['harga'] * $item['jumlah'];
     }
 
-    // Simpan transaksi
-    $transaction = Transaction::create([
-        'id_pelanggan' => $customer->id_pelanggan,
-        'tanggal' => now()->toDateString(),
-        'total' => $total,
-    ]);
+// Simpan transaksi
+$transaction = Transaction::create([
+    'id_pelanggan' => $customer->id_pelanggan,
+    'tanggal' => now()->toDateString(),
+    'total' => $total,
+    'status' => 'Menunggu Persetujuan',
+]);
 
     // Simpan detail transaksi
     foreach ($cart as $item) {
@@ -172,7 +175,38 @@ public function processCheckout(Request $request)
     session()->forget('cart');
 
     return redirect()
-        ->route('cart.index')
-        ->with('success', 'Pesanan berhasil dibuat dan tersimpan.');
+        ->route('customer.detail', $transaction->id_transaksi);
+}
+
+public function detail($id)
+{
+    $transaction = Transaction::with([
+        'customer',
+        'details.product'
+    ])->findOrFail($id);
+
+    return view('customer.detail', compact('transaction'));
+}
+
+public function history(Request $request)
+{
+    $request->validate([
+        'nama' => 'required',
+        'telepon' => 'required',
+    ]);
+
+    $transactions = Transaction::with([
+        'customer',
+        'details.product'
+    ])
+    ->whereHas('customer', function ($query) use ($request) {
+        $query->where('nama', $request->nama)
+              ->where('telepon', $request->telepon);
+    })
+    ->whereDate('tanggal', '>=', now()->subMonth()->toDateString())
+    ->orderBy('tanggal', 'desc')
+    ->get();
+
+    return view('customer.history', compact('transactions'));
 }
 }

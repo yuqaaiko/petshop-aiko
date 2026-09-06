@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Product;
 
 class TransactionDetail extends Model
 {
@@ -19,4 +20,13 @@ class TransactionDetail extends Model
         'qty',
         'subtotal',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(
+            Product::class,
+            'id_produk',
+            'id_produk'
+        );
+    }
 }

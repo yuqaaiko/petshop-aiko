@@ -4,7 +4,6 @@
 
 @section('content')
 
-```
 <style>
     .product-header {
         margin-bottom: 30px;
@@ -32,26 +31,40 @@
         margin-bottom: 8px;
     }
 
-    .product-card a {
+    .product-card a,
+    .product-card button {
         display: inline-block;
         margin-top: 10px;
         padding: 8px 14px;
         background-color: #333333;
         color: #ffffff;
         text-decoration: none;
+        border: none;
         border-radius: 5px;
+        cursor: pointer;
     }
 </style>
 
 <section class="product-header">
+
     <h1>Produk ThePetHouse</h1>
 
     <p>
         Berikut adalah produk yang tersedia untuk hewan peliharaan Anda.
     </p>
+
 </section>
 
+@if(session('success'))
+
+    <p style="color: green;">
+        {{ session('success') }}
+    </p>
+
+@endif
+
 <section>
+
     <h2>Daftar Produk</h2>
 
     @if ($products->count() > 0)
@@ -77,6 +90,27 @@
                         Lihat Detail
                     </a>
 
+                    @if($product->stok > 0)
+
+                        <form action="{{ route('cart.add', $product->id_produk) }}"
+                              method="POST">
+
+                            @csrf
+
+                            <button type="submit">
+                                🛒 Tambah ke Keranjang
+                            </button>
+
+                        </form>
+
+                    @else
+
+                        <p style="color: red;">
+                            Stok habis
+                        </p>
+
+                    @endif
+
                 </div>
 
             @endforeach
@@ -92,6 +126,5 @@
     @endif
 
 </section>
-```
 
 @endsection

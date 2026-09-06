@@ -4,7 +4,6 @@
 
 @section('content')
 
-```
 <style>
     .detail-header {
         margin-bottom: 30px;
@@ -26,26 +25,37 @@
         margin-bottom: 12px;
     }
 
-    .back-button {
+    .back-button,
+    .cart-button {
         display: inline-block;
         margin-top: 15px;
         padding: 8px 14px;
         background-color: #333333;
         color: #ffffff;
         text-decoration: none;
+        border: none;
         border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .cart-button {
+        margin-right: 8px;
     }
 </style>
 
 <section class="detail-header">
+
     <h1>Detail Produk</h1>
 
     <p>
         Informasi lengkap mengenai produk yang dipilih.
     </p>
+
 </section>
 
 <section>
+
     <div class="detail-card">
 
         <h2>{{ $product->nama_produk }}</h2>
@@ -60,12 +70,34 @@
             {{ $product->stok }}
         </p>
 
+        @if($product->stok > 0)
+
+            <form action="{{ route('cart.add', $product->id_produk) }}"
+                  method="POST"
+                  style="display: inline;">
+
+                @csrf
+
+                <button type="submit" class="cart-button">
+                    🛒 Tambah ke Keranjang
+                </button>
+
+            </form>
+
+        @else
+
+            <p style="color: red;">
+                Stok habis.
+            </p>
+
+        @endif
+
         <a href="{{ route('produk.index') }}" class="back-button">
             ← Kembali ke Produk
         </a>
 
     </div>
+
 </section>
-```
 
 @endsection

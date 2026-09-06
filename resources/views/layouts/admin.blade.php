@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
-        @yield('title', 'ThePetHouse')
-    </title>
+    <title>@yield('title', 'Admin - ThePetHouse')</title>
 
     <style>
-
         * {
             box-sizing: border-box;
         }
@@ -21,95 +15,93 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f7f7f7;
-            color: #222;
+            color: #222222;
         }
 
-        /* NAVBAR */
-
-        .navbar {
+        .admin-navbar {
             background-color: #ffffff;
             padding: 18px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         }
 
-        .navbar-brand {
+        .admin-brand {
             font-size: 24px;
             font-weight: bold;
         }
 
-        .navbar-menu {
+        .admin-menu {
             display: flex;
             gap: 25px;
             align-items: center;
         }
 
-        .navbar-menu a {
+        .admin-menu a {
             text-decoration: none;
-            color: #222;
+            color: #222222;
         }
 
-        .navbar-menu a:hover {
+        .admin-menu a:hover {
             color: #6b4f7a;
         }
 
-        /* CONTENT */
-
-        .container {
+        .admin-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 35px 40px;
             min-height: 500px;
         }
 
-        /* FOOTER */
-
-        .footer {
+        .admin-footer {
             background-color: #ffffff;
             text-align: center;
             padding: 25px;
             margin-top: 30px;
-            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
         }
 
-        .footer a {
-            color: #222;
+        .admin-footer a {
+            color: #222222;
             text-decoration: none;
             font-weight: bold;
         }
-
     </style>
-
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
+    <nav class="admin-navbar">
 
-    <nav class="navbar">
-
-        <div class="navbar-brand">
-            ThePetHouse
+        <div class="admin-brand">
+            ThePetHouse Admin
         </div>
 
-        <div class="navbar-menu">
+        <div class="admin-menu">
 
-            <a href="{{ url('/') }}">
-                Beranda
+            <a href="{{ route('admin.dashboard') }}">
+                Dashboard
             </a>
 
-            <a href="{{ route('produk.index') }}">
+            <a href="{{ route('admin.products') }}">
                 Produk
             </a>
 
-            <a href="{{ route('cart.index') }}">
-                🛒 Keranjang
+            <a href="{{ route('admin.categories') }}">
+                Kategori
             </a>
 
-            <a href="{{ route('about') }}">
-                Tentang Kami
+            <a href="{{ route('admin.suppliers') }}">
+                Supplier
+            </a>
+
+            <a href="{{ route('admin.customers') }}">
+                Pelanggan
+            </a>
+
+            <a href="{{ route('transaksi.index') }}">
+                🧾 Transaksi
             </a>
 
         </div>
@@ -117,29 +109,24 @@
     </nav>
 
 
-    <!-- CONTENT -->
-
-    <main class="container">
+    <main class="admin-container">
 
         @yield('content')
 
     </main>
 
 
-    <!-- FOOTER -->
-
-    <footer class="footer">
+    <footer class="admin-footer">
 
         <p>
-            © {{ date('Y') }} ThePetHouse
+            © {{ date('Y') }} ThePetHouse Admin
         </p>
 
-        <a href="{{ route('admin.access') }}">
-            Admin
+        <a href="{{ url('/') }}">
+            Kembali ke Customer
         </a>
 
     </footer>
 
 </body>
-
 </html>

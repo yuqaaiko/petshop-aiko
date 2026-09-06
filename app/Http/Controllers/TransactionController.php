@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    public function index()
-    {
-        $transactions = Transaction::all();
+public function index()
+{
+    $transactions = Transaction::all();
 
-        return view('transaction.index', compact('transactions'));
-    }
+    return view('admin.transactions', compact('transactions'));
+}
 
     public function create()
     {
@@ -22,18 +22,20 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_pelanggan' => 'required|exists:customers,id',
-            'tanggal_transaksi' => 'required|date',
-            'total_harga' => 'required|numeric',
+            'id_pelanggan' => 'required|exists:pelanggan,id_pelanggan',
+            'tanggal' => 'required|date',
+            'total' => 'required|numeric',
         ]);
 
         Transaction::create([
             'id_pelanggan' => $request->id_pelanggan,
-            'tanggal_transaksi' => $request->tanggal_transaksi,
-            'total_harga' => $request->total_harga,
+            'tanggal' => $request->tanggal,
+            'total' => $request->total,
+            'status' => 'Menunggu Persetujuan',
         ]);
 
-        return redirect()->route('transaction.index')
+        return redirect()
+            ->route('transaction.index')
             ->with('success', 'Transaksi berhasil ditambahkan.');
     }
 
@@ -54,20 +56,21 @@ class TransactionController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'id_pelanggan' => 'required|exists:customers,id',
-            'tanggal_transaksi' => 'required|date',
-            'total_harga' => 'required|numeric',
+            'id_pelanggan' => 'required|exists:pelanggan,id_pelanggan',
+            'tanggal' => 'required|date',
+            'total' => 'required|numeric',
         ]);
 
         $transaction = Transaction::findOrFail($id);
 
         $transaction->update([
             'id_pelanggan' => $request->id_pelanggan,
-            'tanggal_transaksi' => $request->tanggal_transaksi,
-            'total_harga' => $request->total_harga,
+            'tanggal' => $request->tanggal,
+            'total' => $request->total,
         ]);
 
-        return redirect()->route('transaction.index')
+        return redirect()
+            ->route('transaction.index')
             ->with('success', 'Transaksi berhasil diperbarui.');
     }
 
@@ -77,7 +80,36 @@ class TransactionController extends Controller
 
         $transaction->delete();
 
-        return redirect()->route('transaction.index')
+        return redirect()
+            ->route('transaction.index')
             ->with('success', 'Transaksi berhasil dihapus.');
     }
+
+    // Admin menyetujui transaksi
+public function approve(string $id)
+{
+    $transaction = Transaction::findOrFail($id);
+
+    $transaction->update([
+        'status' => 'Disetujui',
+    ]);
+
+    return redirect()
+        ->route('transaksi.index')
+        ->with('success', 'Transaksi berhasil disetujui.');
+}
+
+    // Admin menolak transaksi
+public function reject(string $id)
+{
+    $transaction = Transaction::findOrFail($id);
+
+    $transaction->update([
+        'status' => 'Ditolak',
+    ]);
+
+    return redirect()
+        ->route('transaksi.index')
+        ->with('success', 'Transaksi berhasil ditolak.');
+}
 }

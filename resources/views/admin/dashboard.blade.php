@@ -1,4 +1,4 @@
-@extends('layouts.customer')
+@extends('layouts.admin')
 
 @section('title', 'Admin Dashboard - ThePetHouse')
 
@@ -157,10 +157,10 @@
     <p>Kelola data pelanggan.</p>
 </a>
 
-        <a href="#" class="menu-card">
-            <h3>🧾 Transaksi</h3>
-            <p>Kelola data transaksi.</p>
-        </a>
+<a href="{{ route('transaksi.index') }}" class="menu-card">
+    <h3>🧾 Transaksi</h3>
+    <p>Kelola data transaksi.</p>
+</a>
 
     </div>
 

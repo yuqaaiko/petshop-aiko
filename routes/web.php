@@ -40,10 +40,20 @@ Route::get('/admin', function () {
     return view('admin.access');
 })->name('admin.access');
 
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('admin.dashboard');
+
 Route::post('/admin/check', function () {
     if (request('password') === 'punyaiko') {
-        return view('admin.dashboard');
+        return redirect()->route('admin.dashboard');
     }
 
     return back()->with('error', 'Password Admin salah.');
 })->name('admin.check');
+
+Route::get('/checkout', [CartController::class, 'checkout'])
+    ->name('checkout.index');
+
+Route::post('/checkout', [CartController::class, 'processCheckout'])
+    ->name('checkout.process');

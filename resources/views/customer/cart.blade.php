@@ -139,7 +139,7 @@
         {{-- Checkout nanti kita buat setelah keranjang selesai --}}
         <br><br>
 
-        <a href="#">
+        <a href="{{ route('checkout.index') }}">
             Checkout
         </a>
 

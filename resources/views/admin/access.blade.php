@@ -84,24 +84,15 @@
     </p>
 @endif
 
-<form method="POST" action="{{ route('admin.check') }}">
+<form action="{{ route('admin.check') }}" method="POST">
     @csrf
 
-    <label for="password">Password Admin</label>
+    <input type="password" name="password">
 
-    <input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Masukkan password"
-        required
-    >
-
-    <button type="submit" class="admin-button">
-        Masuk ke Admin
+    <button type="submit">
+        Masuk Admin
     </button>
 </form>
-
         <a href="/" class="back-home">
             ← Kembali ke Beranda
         </a>

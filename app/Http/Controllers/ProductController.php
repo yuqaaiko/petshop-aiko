@@ -31,27 +31,29 @@ class ProductController extends Controller
         return view('admin.product-create', compact('categories', 'suppliers'));
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama_produk' => 'required|string|max:255',
-            'harga' => 'required|numeric',
-            'stok' => 'required|integer',
-            'id_kategori' => 'required|exists:kategori,id_kategori',
-            'id_supplier' => 'required|exists:supplier,id_supplier',
-        ]);
+            public function store(Request $request)
+            {
+                $request->validate([
+                    'nama_produk' => 'required|string|max:255',
+                    'harga' => 'required|numeric',
+                    'stok' => 'required|integer',
+                    'satuan' => 'required|string|max:50',
+                    'id_kategori' => 'required|exists:kategori,id_kategori',
+                    'id_supplier' => 'required|exists:supplier,id_supplier',
+                ]);
 
-        Product::create([
-            'nama_produk' => $request->nama_produk,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
-            'id_kategori' => $request->id_kategori,
-            'id_supplier' => $request->id_supplier,
-        ]);
+                Product::create([
+                    'nama_produk' => $request->nama_produk,
+                    'harga' => $request->harga,
+                    'stok' => $request->stok,
+                    'satuan' => $request->satuan,
+                    'id_kategori' => $request->id_kategori,
+                    'id_supplier' => $request->id_supplier,
+                ]);
 
-        return redirect()->route('admin.products')
-            ->with('success', 'Produk berhasil ditambahkan.');
-    }
+                return redirect()->route('admin.products')
+                    ->with('success', 'Produk berhasil ditambahkan.');
+            }
 
     public function show(string $id)
     {
@@ -73,30 +75,31 @@ class ProductController extends Controller
         );
     }
 
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'nama_produk' => 'required|string|max:255',
-            'harga' => 'required|numeric',
-            'stok' => 'required|integer',
-            'id_kategori' => 'required|exists:kategori,id_kategori',
-            'id_supplier' => 'required|exists:supplier,id_supplier',
-        ]);
+        public function update(Request $request, string $id)
+        {
+            $request->validate([
+                'nama_produk' => 'required|string|max:255',
+                'harga' => 'required|numeric',
+                'stok' => 'required|integer',
+                'satuan' => 'required|string|max:50',
+                'id_kategori' => 'required|exists:kategori,id_kategori',
+                'id_supplier' => 'required|exists:supplier,id_supplier',
+            ]);
 
-        $product = Product::findOrFail($id);
+            $product = Product::findOrFail($id);
 
-        $product->update([
-            'nama_produk' => $request->nama_produk,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
-            'id_kategori' => $request->id_kategori,
-            'id_supplier' => $request->id_supplier,
-        ]);
+            $product->update([
+                'nama_produk' => $request->nama_produk,
+                'harga' => $request->harga,
+                'stok' => $request->stok,
+                'satuan' => $request->satuan,
+                'id_kategori' => $request->id_kategori,
+                'id_supplier' => $request->id_supplier,
+            ]);
 
-        return redirect()->route('admin.products')
-            ->with('success', 'Produk berhasil diperbarui.');
-    }
-
+            return redirect()->route('admin.products')
+                ->with('success', 'Produk berhasil diperbarui.');
+        }
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);

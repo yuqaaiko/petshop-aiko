@@ -7,13 +7,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<Customer>
  */
-class CostomersFactory extends Factory
+class CustomerFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [

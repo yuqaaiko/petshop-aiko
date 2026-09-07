@@ -172,7 +172,28 @@
                 @enderror
 
             </div>
+                <div class="form-group">
 
+                <label for="satuan">
+                    Satuan
+                </label>
+
+                <input
+                    type="text"
+                    id="satuan"
+                    name="satuan"
+                    value="{{ old('satuan', $product->satuan) }}"
+                    placeholder="Contoh: pcs, kg, botol"
+                    required
+                >
+
+                @error('satuan')
+                    <div class="error-message">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+            </div>
 
             <div class="form-group">
 
@@ -194,7 +215,7 @@
 
                         <option
                             value="{{ $category->id_kategori }}"
-                            {{ old('id_kategori', $product->id_kategori) == $category->id ? 'selected' : '' }}
+                            {{ old('id_kategori', $product->id_kategori) == $category->id_kategori ? 'selected' : '' }}
                         >
                             {{ $category->nama_kategori }}
                         </option>
@@ -232,7 +253,7 @@
 
                         <option
                             value="{{ $supplier->id_supplier }}"
-                            {{ old('id_supplier', $product->id_supplier) == $supplier->id ? 'selected' : '' }}
+                           {{ old('id_supplier', $product->id_supplier) == $supplier->id_supplier ? 'selected' : '' }}
                         >
                             {{ $supplier->nama_supplier }}
                         </option>

@@ -11,8 +11,18 @@ class CategorySeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
-        Category::factory(3)->create();
-    }
+public function run(): void
+{
+    Category::create([
+        'nama_kategori' => 'Makanan',
+    ]);
+
+    Category::create([
+        'nama_kategori' => 'Perawatan',
+    ]);
+
+    Category::create([
+        'nama_kategori' => 'Aksesoris',
+    ]);
+}
 }

@@ -1,4 +1,4 @@
-@extends('layouts.customer')
+@extends('layouts.admin')
 
 @section('title', 'Tambah Produk - Admin ThePetHouse')
 
@@ -191,7 +191,7 @@
                     @foreach ($categories as $category)
 
                         <option
-                            value="{{ $category->id }}"
+                            value="{{ $category->id_kategori }}"
                             {{ old('id_kategori') == $category->id ? 'selected' : '' }}
                         >
                             {{ $category->nama_kategori }}
@@ -229,7 +229,7 @@
                     @foreach ($suppliers as $supplier)
 
                         <option
-                            value="{{ $supplier->id }}"
+                            value="{{ $supplier->id_supplier }}"
                             {{ old('id_supplier') == $supplier->id ? 'selected' : '' }}
                         >
                             {{ $supplier->nama_supplier }}

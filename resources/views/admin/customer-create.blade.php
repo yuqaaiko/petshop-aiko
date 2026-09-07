@@ -1,4 +1,4 @@
-@extends('layouts.customer')
+@extends('layouts.admin')
 
 @section('title', 'Tambah Pelanggan - Admin ThePetHouse')
 

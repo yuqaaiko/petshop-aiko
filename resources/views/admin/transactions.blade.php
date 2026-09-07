@@ -145,7 +145,6 @@
                                     method="POST"
                                     class="action-form"
                                 >
-                                >
                                     @csrf
 
                                     <button type="submit" class="action-button">

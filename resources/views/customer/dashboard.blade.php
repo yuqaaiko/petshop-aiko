@@ -154,9 +154,25 @@
     </p>
 
     <p>
-        Kami hadir untuk membantu pemilik hewan
-        menemukan berbagai kebutuhan peliharaan
-        dengan lebih mudah.
+        Nama: Rasyuqa Marga Dewi Aiko
+        absen: 33
+        kelas XII TKJ-2
+
+        semoga tersemoga kan apa yang saya ingin kan & semoga dengan projek ini bisa bermanfaat untuk kedepan nya.
+        terima kasih atas pemberian ilmu nya
+    </p>
+
+    <p>
+        Malam hari menatap layar,
+        Kopi dingin tinggal setengah.
+        Tugas berat jangan gentar,
+        Pelan-pelan, pasti selesai juga.
+    </p>
+
+
+
+    <p>
+        THE END.....
     </p>
 
 </section>

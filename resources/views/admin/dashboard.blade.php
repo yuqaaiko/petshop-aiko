@@ -17,14 +17,13 @@
         color: #666666;
     }
 
-    .admin-stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 20px;
-        margin-top: 25px;
-        margin-bottom: 35px;
-    }
+.admin-master {
+    margin-top: 30px;
+}
 
+.admin-master h2 {
+    margin-bottom: 20px;
+}
     .stat-card {
         background-color: #ffffff;
         padding: 25px;
@@ -101,71 +100,40 @@
 </section>
 
 
-<section class="admin-stats">
-
-    <div class="stat-card">
-        <h2>📦 20</h2>
-        <p>Total Produk</p>
-    </div>
-
-    <div class="stat-card">
-        <h2>🏷️ 5</h2>
-        <p>Total Kategori</p>
-    </div>
-
-    <div class="stat-card">
-        <h2>🚚 8</h2>
-        <p>Total Supplier</p>
-    </div>
-
-    <div class="stat-card">
-        <h2>👥 15</h2>
-        <p>Total Pelanggan</p>
-    </div>
-
-    <div class="stat-card">
-        <h2>🧾 12</h2>
-        <p>Total Transaksi</p>
-    </div>
-
-</section>
-
-
-<section class="admin-menu">
+<section class="admin-master">
 
     <h2>Data Master</h2>
 
     <div class="menu-list">
 
-    <a href="{{ route('admin.products') }}" class="menu-card">
-        <h3>📦 Produk</h3>
-        <p>Kelola data produk ThePetHouse.</p>
-    </a>
+        <a href="{{ route('admin.products') }}" class="menu-card">
+            <h3> Produk</h3>
+            <p>Kelola data produk ThePetHouse.</p>
+        </a>
 
-<a href="{{ route('admin.categories') }}" class="menu-card">
-    <h3>🏷️ Kategori</h3>
-    <p>Kelola kategori produk.</p>
-</a>
+        <a href="{{ route('admin.categories') }}" class="menu-card">
+            <h3> Kategori</h3>
+            <p>Kelola kategori produk.</p>
+        </a>
 
-<a href="{{ route('admin.suppliers') }}" class="menu-card">
-    <h3>🚚 Supplier</h3>
-    <p>Kelola data supplier.</p>
-</a>
+        <a href="{{ route('admin.suppliers') }}" class="menu-card">
+            <h3> Supplier</h3>
+            <p>Kelola data supplier.</p>
+        </a>
 
-<a href="{{ route('admin.customers') }}" class="menu-card">
-    <h3>👥 Pelanggan</h3>
-    <p>Kelola data pelanggan.</p>
-</a>
+        <a href="{{ route('admin.customers') }}" class="menu-card">
+            <h3> Pelanggan</h3>
+            <p>Kelola data pelanggan.</p>
+        </a>
 
-<a href="{{ route('transaksi.index') }}" class="menu-card">
-    <h3>🧾 Transaksi</h3>
-    <p>Kelola data transaksi.</p>
-</a>
+        <a href="{{ route('transaksi.index') }}" class="menu-card">
+            <h3> Transaksi</h3>
+            <p>Kelola data transaksi.</p>
+        </a>
 
     </div>
 
 </section>
-
 
 <section class="low-stock">
 

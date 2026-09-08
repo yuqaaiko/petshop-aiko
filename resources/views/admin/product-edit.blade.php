@@ -167,11 +167,6 @@
 
                 @error('stok')
                     <div class="error-message">
-                        {{ $message }}
-                    </div>
-                @enderror
-
-            </div>
                 <div class="form-group">
 
                 <label for="satuan">
